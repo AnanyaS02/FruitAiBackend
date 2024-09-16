@@ -15,11 +15,7 @@ def main():
             "forget to activate a virtual environment?"
         ) from exc
 
-    # Start the development server with a specific port if provided
-    if 'runserver' in sys.argv:
-        port = os.getenv('PORT', 8000)  # Default to port 8000 if not set
-        sys.argv.append(f'{port}')
-
+    # Remove manual port appending
     execute_from_command_line(sys.argv)
 
 if __name__ == '__main__':
