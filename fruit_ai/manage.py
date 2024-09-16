@@ -3,7 +3,6 @@
 import os
 import sys
 
-
 def main():
     """Run administrative tasks."""
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'fruit_ai.settings')
@@ -15,8 +14,13 @@ def main():
             "available on your PYTHONPATH environment variable? Did you "
             "forget to activate a virtual environment?"
         ) from exc
-    execute_from_command_line(sys.argv)
 
+    # Start the development server with a specific port if provided
+    if 'runserver' in sys.argv:
+        port = os.getenv('PORT', 8000)  # Default to port 8000 if not set
+        sys.argv.append(f'{port}')
+
+    execute_from_command_line(sys.argv)
 
 if __name__ == '__main__':
     main()
